@@ -426,9 +426,11 @@ bool MyGLWidget::isOpenedDoor(){
 void MyGLWidget::keyPressEvent(QKeyEvent *event){
      if(event->key()==(int)'D'){
         yRot+=10;
+        rotatedbyc=1;
     }
     else if(event->key()==(int)'A'){
         yRot-=10;
+        rotatedbyc=1;
     }else if(event->key() == (int)'W' && isOpenedWindows()){
         setOpenWindows(false);
     }else if(event->key() == (int)'W'){
