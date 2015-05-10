@@ -23,7 +23,10 @@ protected:
     QSize sizeHint() const;
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
-
+    void setOpenWindows(bool);
+    bool isOpenedWindows();
+    void setOpenDoor(bool);
+    bool isOpenedDoor();
 public slots:
     // slots for xyz-rotation slider
     void setXRotation(int angle);
@@ -35,12 +38,17 @@ signals:
     void yRotationChanged(int angle);
     void zRotationChanged(int angle);
 private:
-    void draw();
-    void draw2();
+//    void drawHouse();
+//    void draw2();
+    void drawOpenedWindows();
+    void drawClosedWindows();
+    void drawOpenedDoor();
+    void drawClosedDoor();
     int xRot;
     int yRot;
     int zRot;
-
+    bool openWindows;
+    bool openDoor;
     QPoint lastPos;
 };
 

@@ -82,12 +82,20 @@ void MyGLWidget::paintGL()
     glLoadIdentity();
     glTranslatef(0.0, 0.0, -10.0);
     drawHouse();
-//    cout<<xRot<<endl;
-    cout<<xRot<<" "<<yRot<<endl;
+//    cout<<xRot<<" "<<yRot<<endl;
+    if(isOpenedDoor()){
+        drawOpenedDoor();
+    }else
+        drawClosedDoor();
+    if(isOpenedWindows()){
+        drawOpenedWindows();
+    }else
+        drawClosedWindows();
     glRotatef(xRot/16.0,1,0,0);
     glRotatef(yRot/30.0,0,0,1);
     glRotatef(zRot/16.0,1,0,0);
     drawBicycle();
+
 //    draw2();
 }
 
@@ -109,7 +117,78 @@ void drawCircle(double x1,double y1,double z1){
     glEnd();
 }
 
+void MyGLWidget::drawOpenedWindows(){
+    glBegin(GL_POLYGON);
+        glColor3f(0.0f,0.0f,1.0f);
+        glVertex3d(.2,-.4,1);
+        glColor3f(0.0f,0.0f,1.0f);
+        glVertex3d(.2,-.4,0);
+        glColor3f(0.0f,0.0f,1.0f);
+        glVertex3d(.2,-.2,0);
+        glColor3f(0.0f,0.0f,1.0f);
+        glVertex3d(.2,-.2,1);
+     glEnd();
 
+       //shabk shmal
+     glBegin(GL_POLYGON);
+         glColor3f(0.0f,0.0f,1.0f);
+         glVertex3d(-.2,-.4,0);
+         glColor3f(0.0f,0.0f,1.0f);
+         glVertex3d(-.2,-.4,1);
+         glColor3f(0.0f,0.0f,1.0f);
+         glVertex3d(0,-.2,0);
+         glColor3f(0.0f,0.0f,1.0f);
+         glVertex3d(0,-.2,1);
+      glEnd();
+}
+void MyGLWidget::drawClosedWindows(){
+    glBegin(GL_POLYGON);
+        glColor3f(0.0f,0.0f,1.0f);
+        glVertex3d(0,-.4,0);//glVertex3d(.2,-.4,1);
+        glColor3f(0.0f,0.0f,1.0f);
+        glVertex3d(.2,-.4,0);
+        glColor3f(0.0f,0.0f,1.0f);
+        glVertex3d(.2,-.2,0);
+        glColor3f(0.0f,0.0f,1.0f);
+        glVertex3d(0,-.2,0);//glVertex3d(.2,-.2,1);
+     glEnd();
+
+       //shabk shmal
+     glBegin(GL_POLYGON);
+         glColor3f(0.0f,0.0f,1.0f);
+         glVertex3d(-.2,-.4,0);
+         glColor3f(0.0f,0.0f,1.0f);
+         glVertex3d(0,-.4,0);//glVertex3d(-.2,-.4,1);
+         glColor3f(0.0f,0.0f,1.0f);
+         glVertex3d(0,-.2,0);
+         glColor3f(0.0f,0.0f,1.0f);
+         glVertex3d(-.2,-.2,0);//glVertex3d(0,-.2,1);
+      glEnd();
+}
+void MyGLWidget::drawOpenedDoor(){
+    glBegin(GL_POLYGON);
+        glColor3f(0.0f,0.0f,1.0f);
+        glVertex3d(1.3,-.95,1);
+        glColor3f(0.0f,0.0f,1.0f);
+        glVertex3d(1.3,-.95,0);
+        glColor3f(0.0f,0.0f,1.0f);
+        glVertex3d(1.3,-.45,0);
+        glColor3f(0.0f,0.0f,1.0f);
+        glVertex3d(1.3,-.45,1);
+     glEnd();
+}
+void MyGLWidget::drawClosedDoor(){
+    glBegin(GL_POLYGON);
+        glColor3f(0.0f,0.0f,1.0f);
+        glVertex3d(1,-.95,0);
+        glColor3f(0.0f,0.0f,1.0f);
+        glVertex3d(1.3,-.95,0);
+        glColor3f(0.0f,0.0f,1.0f);
+        glVertex3d(1.3,-.45,0);
+        glColor3f(0.0f,0.0f,1.0f);
+        glVertex3d(1,-.45,0);
+     glEnd();
+}
 void MyGLWidget::drawHouse(){
     /////////7eta gwa
  glBegin(GL_POLYGON);
@@ -196,30 +275,6 @@ void MyGLWidget::drawHouse(){
           glVertex3d(1,-.45,0);
           //glVertex3d(1.3,-.45,1);
        glEnd();
-
-       // shbak ymeen
-         glBegin(GL_POLYGON);
-             glColor3f(0.0f,0.0f,1.0f);
-             glVertex3d(0,-.4,0);//glVertex3d(.2,-.4,1);
-             glColor3f(0.0f,0.0f,1.0f);
-             glVertex3d(.2,-.4,0);
-             glColor3f(0.0f,0.0f,1.0f);
-             glVertex3d(.2,-.2,0);
-             glColor3f(0.0f,0.0f,1.0f);
-             glVertex3d(0,-.2,0);//glVertex3d(.2,-.2,1);
-          glEnd();
-
-            //shabk shmal
-          glBegin(GL_POLYGON);
-              glColor3f(0.0f,0.0f,1.0f);
-              glVertex3d(-.2,-.4,0);
-              glColor3f(0.0f,0.0f,1.0f);
-              glVertex3d(0,-.4,0);//glVertex3d(-.2,-.4,1);
-              glColor3f(0.0f,0.0f,1.0f);
-              glVertex3d(0,-.2,0);
-              glColor3f(0.0f,0.0f,1.0f);
-              glVertex3d(-.2,-.2,0);//glVertex3d(0,-.2,1);
-           glEnd();
 }
 
 void MyGLWidget::drawBicycle(){
@@ -264,20 +319,33 @@ void MyGLWidget::mouseMoveEvent(QMouseEvent *event)
 }
 
 
-
+void MyGLWidget::setOpenDoor(bool z){
+    openDoor = z;
+}
+void MyGLWidget::setOpenWindows(bool z){
+    openWindows = z;
+}
+bool MyGLWidget::isOpenedWindows(){
+    return openWindows;
+}
+bool MyGLWidget::isOpenedDoor(){
+    return openDoor;
+}
 void MyGLWidget::keyPressEvent(QKeyEvent *event){
-    if(event->key()==(int)'W'){//UP
-        xRot+=10;
-    }
-    else if(event->key()==(int)'S'){
-        xRot-=10;
 
-    }
-    else if(event->key()==(int)'D'){
+    if(event->key()==(int)'D'){
         yRot+=10;
     }
     else if(event->key()==(int)'A'){
         yRot-=10;
+    }else if(event->key() == (int)'W' && isOpenedWindows()){
+        setOpenWindows(false);
+    }else if(event->key() == (int)'W'){
+        setOpenWindows(true);
+    }else if(event->key() == (int)'R' && isOpenedDoor()){
+        setOpenDoor(false);
+    }else if(event->key() == (int)'R'){
+        setOpenDoor(true);
     }
     updateGL();
 }
