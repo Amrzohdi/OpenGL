@@ -86,6 +86,7 @@ void MyGLWidget::paintGL()
     glRotatef(yRot / 16.0, 0.0, 1.0, 0.0);
     glRotatef(zRot / 16.0, 0.0, 0.0, 1.0);
     draw();
+    draw2();
 }
 
 void MyGLWidget::resizeGL(int width, int height)
@@ -203,13 +204,15 @@ void MyGLWidget::draw()
     // bab
       glBegin(GL_POLYGON);
           glColor3f(0.0f,0.0f,1.0f);
-          glVertex3d(1,-.95,0);// glVertex3d(1.3,-.95,1);
+          glVertex3d(1,-.95,0);
+         // glVertex3d(1.3,-.95,1);
           glColor3f(0.0f,0.0f,1.0f);
           glVertex3d(1.3,-.95,0);
           glColor3f(0.0f,0.0f,1.0f);
           glVertex3d(1.3,-.45,0);
           glColor3f(0.0f,0.0f,1.0f);
-          glVertex3d(1,-.45,0);//glVertex3d(1.3,-.45,1);
+          glVertex3d(1,-.45,0);
+          //glVertex3d(1.3,-.45,1);
        glEnd();
 
        // shbak ymeen
@@ -234,6 +237,122 @@ void MyGLWidget::draw()
               glVertex3d(0,-.2,0);
               glColor3f(0.0f,0.0f,1.0f);
               glVertex3d(-.2,-.2,0);//glVertex3d(0,-.2,1);
+           glEnd();
+
+
+
+}
+void MyGLWidget::draw2()
+{
+
+    /////////7eta gwa
+ glBegin(GL_POLYGON);
+    glColor3f(0.0f,0.0f,1.0f);
+    glVertex3f(-1,-1,0);
+    glColor3f(0.0f,0.0f,1.0f);
+    glVertex3f(1,-1,0);
+    glColor3f(0.0f,0.0f,1.0f);
+    glVertex3f(1,0,0);
+    glColor3f(0.0f,0.0f,1.0f);
+    glVertex3f(-1,0,0);
+  glEnd();
+
+    //////////// foo2
+    glBegin(GL_POLYGON);
+        glColor3f(1.0f,1.0f,1.0f);
+        glVertex3f(-0.5,-0.1,1);
+        glColor3f(1.0f,1.0f,1.0f);
+        glVertex3f(1.5,-0.1,1);
+        glColor3f(1.0f,1.0f,1.0f);
+        glVertex3f(1,0,0);
+        glColor3f(1.0f,1.0f,1.0f);
+        glVertex3f(-1,0,0);
+    glEnd();
+
+    //////////////////////t7t
+    glBegin(GL_POLYGON);
+    glColor3f(1.0f,1.0f,1.0f);
+         glVertex3f(-0.5,-1.1,1);
+         glColor3f(1.0f,1.0f,1.0f);
+         glVertex3f(1.5,-1.1,1);
+         glColor3f(1.0f,1.0f,1.0f);
+         glVertex3f(1,-1,0);
+         glColor3f(1.0f,1.0f,1.0f);
+         glVertex3f(-1,-1,0);
+     glEnd();
+
+
+     // el gnb el ymeen
+     glBegin(GL_POLYGON);
+         glColor3f(1.0f,1.0f,1.0f);
+          glVertex3f(-1,-1,0);
+         glColor3f(1.0f,1.0f,1.0f);
+         glVertex3f(-0.5,-1.1,1);
+         glColor3f(1.0f,1.0f,1.0f);
+         glVertex3f(-0.5,-0.1,1);
+         glColor3f(1.0f,1.0f,1.0f);
+         glVertex3f(-1,0,0);
+     glEnd();
+        //el gnb el shmal
+     glBegin(GL_POLYGON);
+          glColor3f(1.0f,1.0f,1.0f);
+          glVertex3f(1,-1,0);
+          glColor3f(1.0f,1.0f,1.0f);
+          glVertex3f(1.5,-1.1,1);
+          glColor3f(1.0f,1.0f,1.0f);
+          glVertex3f(1.5,-0.1,1);
+          glColor3f(1.0f,1.0f,1.0f);
+          glVertex3f(1,0,0);
+      glEnd();
+
+//    7eeta fe el wesh
+     glBegin(GL_POLYGON);
+         glColor3f(1.0f,1.0f,1.0f);
+         glVertex3f(-0.5,-1.1,1);
+         glColor3f(1.0f,1.0f,1.0f);
+         glVertex3f(1.5,-1.1,1);
+         glColor3f(1.0f,1.0f,1.0f);
+         glVertex3f(1.5,-0.1,1);
+         glColor3f(1.0f,1.0f,1.0f);
+         glVertex3f(-0.5,-0.1,1);
+      glEnd();
+
+    // bab
+      glBegin(GL_POLYGON);
+          glColor3f(0.0f,0.0f,1.0f);
+          glVertex3d(1,-.95,0);
+         // glVertex3d(1.3,-.95,1);
+          glColor3f(0.0f,0.0f,1.0f);
+          glVertex3d(1.3,-.95,0);
+          glColor3f(0.0f,0.0f,1.0f);
+          glVertex3d(1.3,-.45,0);
+          glColor3f(0.0f,0.0f,1.0f);
+          glVertex3d(1,-.45,0);
+          //glVertex3d(1.3,-.45,1);
+       glEnd();
+
+       // shbak ymeen
+         glBegin(GL_POLYGON);
+             glColor3f(0.0f,0.0f,1.0f);
+             glVertex3d(.2,-.4,1);
+             glColor3f(0.0f,0.0f,1.0f);
+             glVertex3d(.2,-.4,0);
+             glColor3f(0.0f,0.0f,1.0f);
+             glVertex3d(.2,-.2,0);
+             glColor3f(0.0f,0.0f,1.0f);
+            glVertex3d(.2,-.2,1);
+          glEnd();
+
+            //shabk shmal
+          glBegin(GL_POLYGON);
+              glColor3f(0.0f,0.0f,1.0f);
+              glVertex3d(-.2,-.4,0);
+              glColor3f(0.0f,0.0f,1.0f);
+              glVertex3d(-.2,-.4,1);
+              glColor3f(0.0f,0.0f,1.0f);
+              glVertex3d(0,-.2,0);
+              glColor3f(0.0f,0.0f,1.0f);
+              glVertex3d(0,-.2,1);
            glEnd();
 
 

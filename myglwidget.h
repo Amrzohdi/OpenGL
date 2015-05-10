@@ -33,7 +33,7 @@ signals:
     void zRotationChanged(int angle);
 private:
     void draw();
-
+    void draw2();
     int xRot;
     int yRot;
     int zRot;
