@@ -76,20 +76,34 @@ void MyGLWidget::initializeGL()
 //    glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
 }
 
+
+void drawline(){
+    glColor3f(1.0,1.0,0.6);
+    glBegin(GL_LINE_STRIP);
+    glVertex3d(0,-1.5,0);
+    glVertex3d(0.75,-1.5,0);
+    glEnd();
+
+
+    glColor3f(1.0,1.0,0.6);
+    glBegin(GL_LINE_STRIP);
+    glVertex3d(0,-1.5,0);
+    glVertex3d(0,-1.2,0);
+    glEnd();
+}
 void MyGLWidget::paintGL()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
     glTranslatef(0.0, 0.0, -10.0);
     drawHouse();
-//    cout<<xRot<<endl;
-    cout<<xRot<<" "<<yRot<<endl;
     glRotatef(xRot/16.0,1,0,0);
-    glRotatef(yRot/30.0,0,0,1);
-    glRotatef(zRot/16.0,1,0,0);
+    glRotatef(yRot/30.0,0,1,0);
+    glRotatef(zRot/16,0,.7,1);
     drawBicycle();
-//    draw2();
+    drawline();
 }
+
 
 void drawCircle(double x1,double y1,double z1){
     float x2,y2,z2;
@@ -225,6 +239,7 @@ void MyGLWidget::drawHouse(){
 void MyGLWidget::drawBicycle(){
     drawCircle(0,-1.5,0);
     drawCircle(0.75,-1.5,0);
+
 }
 
 void MyGLWidget::resizeGL(int width, int height)
@@ -271,7 +286,6 @@ void MyGLWidget::keyPressEvent(QKeyEvent *event){
     }
     else if(event->key()==(int)'S'){
         xRot-=10;
-
     }
     else if(event->key()==(int)'D'){
         yRot+=10;
@@ -279,5 +293,12 @@ void MyGLWidget::keyPressEvent(QKeyEvent *event){
     else if(event->key()==(int)'A'){
         yRot-=10;
     }
+    else if(event->key()==(int)'Z'){
+        zRot+=10;
+    }
+    else if(event->key()==(int)'X'){
+        zRot-=10;
+    }
+
     updateGL();
 }
