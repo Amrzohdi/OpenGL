@@ -82,7 +82,7 @@ void MyGLWidget::paintGL()
     glLoadIdentity();
     glTranslatef(0.0, 0.0, -10.0);
     drawHouse();
-//    cout<<xRot<<" "<<yRot<<endl;
+    cout << isOpenedDoor() << endl;
     if(isOpenedDoor()){
         drawOpenedDoor();
     }else
@@ -168,13 +168,13 @@ void MyGLWidget::drawClosedWindows(){
 void MyGLWidget::drawOpenedDoor(){
     glBegin(GL_POLYGON);
         glColor3f(0.0f,0.0f,1.0f);
-        glVertex3d(1.3,-.95,1);
+        glVertex3d(1.3,-.95,0);
         glColor3f(0.0f,0.0f,1.0f);
         glVertex3d(1.3,-.95,0);
         glColor3f(0.0f,0.0f,1.0f);
         glVertex3d(1.3,-.45,0);
         glColor3f(0.0f,0.0f,1.0f);
-        glVertex3d(1.3,-.45,1);
+        glVertex3d(1.3,-.45,0);
      glEnd();
 }
 void MyGLWidget::drawClosedDoor(){
@@ -262,19 +262,7 @@ void MyGLWidget::drawHouse(){
          glVertex3f(-0.5,-0.1,1);
       glEnd();
 
-    // bab
-      glBegin(GL_POLYGON);
-          glColor3f(0.0f,0.0f,1.0f);
-          glVertex3d(1,-.95,0);
-         // glVertex3d(1.3,-.95,1);
-          glColor3f(0.0f,0.0f,1.0f);
-          glVertex3d(1.3,-.95,0);
-          glColor3f(0.0f,0.0f,1.0f);
-          glVertex3d(1.3,-.45,0);
-          glColor3f(0.0f,0.0f,1.0f);
-          glVertex3d(1,-.45,0);
-          //glVertex3d(1.3,-.45,1);
-       glEnd();
+
 }
 
 void MyGLWidget::drawBicycle(){
