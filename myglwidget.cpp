@@ -53,8 +53,7 @@ void MyGLWidget::setYRotation(int angle)
     }
 }
 
-void MyGLWidget::setZRotation(int angle)
-{
+void MyGLWidget::setZRotation(int angle){
     qNormalizeAngle(angle);
     if (angle != zRot) {
         zRot = angle;
@@ -86,7 +85,7 @@ void MyGLWidget::paintGL()
     glRotatef(yRot / 16.0, 0.0, 1.0, 0.0);
     glRotatef(zRot / 16.0, 0.0, 0.0, 1.0);
     draw();
-    draw2();
+//    draw2();
 }
 
 void MyGLWidget::resizeGL(int width, int height)
@@ -125,6 +124,24 @@ void MyGLWidget::mouseMoveEvent(QMouseEvent *event)
     lastPos = event->pos();
 }
 
+
+void drawCircle(double x1,double y1,double z1){
+    float x2,y2,z2;
+    float angle;
+    double radius=0.1;
+
+    glColor3f(1.0,1.0,0.6);
+
+    glBegin(GL_POINTS);
+    for (angle=1.0f;angle<361.0f;angle+=.2)
+    {
+        x2 = x1+sin(angle)*radius;
+        y2 = y1+cos(angle)*radius;
+        z2 = z1+cos(angle)*radius;
+        glVertex3f(x2,y2,z2);
+    }
+    glEnd();
+}
 
 void MyGLWidget::draw()
 {
@@ -238,9 +255,9 @@ void MyGLWidget::draw()
               glColor3f(0.0f,0.0f,1.0f);
               glVertex3d(-.2,-.2,0);//glVertex3d(0,-.2,1);
            glEnd();
-
-
-
+//    drawCircle(1,1,1);
+    drawCircle(0,-1.5,2);
+    drawCircle(0,-1.5,2.2);
 }
 void MyGLWidget::draw2()
 {
