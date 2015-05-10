@@ -81,6 +81,10 @@ void MyGLWidget::paintGL()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
     glTranslatef(0.0, 0.0, -10.0);
+//    glRotatef(xRot/16.0,1,0,0);
+//    glRotatef(yRot/30.0,0,1,0);
+//    glRotatef(zRot/16.0,0,0,1);
+//    glRotatef(180.0 , 0 , 1 , 0);
     drawHouse();
     cout << isOpenedDoor() << endl;
     if(isOpenedDoor()){
@@ -120,73 +124,73 @@ void drawCircle(double x1,double y1,double z1){
 void MyGLWidget::drawOpenedWindows(){
     glBegin(GL_POLYGON);
         glColor3f(0.0f,0.0f,1.0f);
+        glVertex3d(.32,-.4,1.2);
+        glColor3f(0.0f,0.0f,1.0f);
         glVertex3d(.2,-.4,1);
         glColor3f(0.0f,0.0f,1.0f);
-        glVertex3d(.2,-.4,0);
-        glColor3f(0.0f,0.0f,1.0f);
-        glVertex3d(.2,-.2,0);
-        glColor3f(0.0f,0.0f,1.0f);
         glVertex3d(.2,-.2,1);
+        glColor3f(0.0f,0.0f,1.0f);
+        glVertex3d(.32,-.2,1.2);
      glEnd();
 
-       //shabk shmal
-     glBegin(GL_POLYGON);
-         glColor3f(0.0f,0.0f,1.0f);
-         glVertex3d(-.2,-.4,0);
-         glColor3f(0.0f,0.0f,1.0f);
-         glVertex3d(-.2,-.4,1);
-         glColor3f(0.0f,0.0f,1.0f);
-         glVertex3d(0,-.2,0);
-         glColor3f(0.0f,0.0f,1.0f);
-         glVertex3d(0,-.2,1);
-      glEnd();
+     //shabk shmal
+   glBegin(GL_POLYGON);
+       glColor3f(0.0f,0.0f,1.0f);
+       glVertex3d(-.2,-.4,1); // 1
+       glColor3f(0.0f,0.0f,1.0f);
+       glVertex3d(-.32,-.4,1.2);// 2
+       glColor3f(0.0f,0.0f,1.0f);
+       glVertex3d(-.32,-.2,1.2); // 3
+       glColor3f(0.0f,0.0f,1.0f);
+       glVertex3d(-.2,-.2,1);//glVertex3d(0,-.2,1); // 4
+    glEnd();
 }
 void MyGLWidget::drawClosedWindows(){
     glBegin(GL_POLYGON);
         glColor3f(0.0f,0.0f,1.0f);
-        glVertex3d(0,-.4,0);//glVertex3d(.2,-.4,1);
+        glVertex3d(0,-.4,1);//glVertex3d(.2,-.4,1);
         glColor3f(0.0f,0.0f,1.0f);
-        glVertex3d(.2,-.4,0);
+        glVertex3d(.2,-.4,1);
         glColor3f(0.0f,0.0f,1.0f);
-        glVertex3d(.2,-.2,0);
+        glVertex3d(.2,-.2,1);
         glColor3f(0.0f,0.0f,1.0f);
-        glVertex3d(0,-.2,0);//glVertex3d(.2,-.2,1);
+        glVertex3d(0,-.2,1);//glVertex3d(.2,-.2,1);
      glEnd();
 
        //shabk shmal
      glBegin(GL_POLYGON);
          glColor3f(0.0f,0.0f,1.0f);
-         glVertex3d(-.2,-.4,0);
+         glVertex3d(-.2,-.4,1);
          glColor3f(0.0f,0.0f,1.0f);
-         glVertex3d(0,-.4,0);//glVertex3d(-.2,-.4,1);
+         glVertex3d(0,-.4,1);//glVertex3d(-.2,-.4,1);
          glColor3f(0.0f,0.0f,1.0f);
-         glVertex3d(0,-.2,0);
+         glVertex3d(0,-.2,1);
          glColor3f(0.0f,0.0f,1.0f);
-         glVertex3d(-.2,-.2,0);//glVertex3d(0,-.2,1);
+         glVertex3d(-.2,-.2,1);//glVertex3d(0,-.2,1);
       glEnd();
 }
 void MyGLWidget::drawOpenedDoor(){
     glBegin(GL_POLYGON);
         glColor3f(0.0f,0.0f,1.0f);
-        glVertex3d(1.3,-.95,0);
+        glVertex3d(1.55,-.95,1.3); // 1
         glColor3f(0.0f,0.0f,1.0f);
-        glVertex3d(1.3,-.95,0);
+        glVertex3d(1.3,-.95,1); // 2
         glColor3f(0.0f,0.0f,1.0f);
-        glVertex3d(1.3,-.45,0);
+        glVertex3d(1.3,-.45,1); // 3
         glColor3f(0.0f,0.0f,1.0f);
-        glVertex3d(1.3,-.45,0);
+        glVertex3d(1.55,-.45,1.3); // 4
      glEnd();
 }
 void MyGLWidget::drawClosedDoor(){
     glBegin(GL_POLYGON);
         glColor3f(0.0f,0.0f,1.0f);
-        glVertex3d(1,-.95,0);
+        glVertex3d(1,-.95,1); // 1
         glColor3f(0.0f,0.0f,1.0f);
-        glVertex3d(1.3,-.95,0);
+        glVertex3d(1.3,-.95,1); // 2
         glColor3f(0.0f,0.0f,1.0f);
-        glVertex3d(1.3,-.45,0);
+        glVertex3d(1.3,-.45,1); // 3
         glColor3f(0.0f,0.0f,1.0f);
-        glVertex3d(1,-.45,0);
+        glVertex3d(1,-.45,1); // 4
      glEnd();
 }
 void MyGLWidget::drawHouse(){
