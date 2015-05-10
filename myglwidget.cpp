@@ -128,17 +128,23 @@ void MyGLWidget::paintGL()
     glClearColor(0, 1, 0, 0);
     glLoadIdentity();
     glTranslatef(0.0, 0.0, -10.0);
-    if(!rotatedbyc){
+    if(!rotatedbyc && !frb){
          glRotatef(xRot/16.0,1,0,0);
          glRotatef(yRot/16.0,0,1,0);
          glRotatef(zRot/16.0,0,0,1);
     }
+    if(frb){
+        glPushMatrix();
+        glTranslatef(xRot/32.0, 0.0,0.0);
+        frb=0;
+    }
+
     if(rotatedbyc){
         glPushMatrix();
-        glRotatef(xRot/16.0,1,0,0);
-        glRotatef(yRot/30.0,0,1,0);
         glRotatef(zRot/16,0,.7,1);
+        rotatedbyc=0;
     }
+
     drawBicycle();
     drawline();
     glPopMatrix();
@@ -425,12 +431,14 @@ bool MyGLWidget::isOpenedDoor(){
 }
 void MyGLWidget::keyPressEvent(QKeyEvent *event){
      if(event->key()==(int)'D'){
-        yRot+=10;
-        rotatedbyc=1;
+        xRot+=10;
+        frb=1;
+        rotatedbyc=0;
     }
     else if(event->key()==(int)'A'){
-        yRot-=10;
-        rotatedbyc=1;
+        xRot-=10;
+        rotatedbyc=0;
+        frb=1;
     }else if(event->key() == (int)'W' && isOpenedWindows()){
         setOpenWindows(false);
     }else if(event->key() == (int)'W'){
