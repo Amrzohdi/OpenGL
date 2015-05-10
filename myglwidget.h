@@ -12,7 +12,7 @@ public:
     explicit MyGLWidget(QWidget *parent = 0);
     ~MyGLWidget();
     void keyPressEvent(QKeyEvent *event);
-    void drawHouse();
+    void drawHouse(int);
     void drawBicycle();
 protected:
     void initializeGL();
@@ -40,8 +40,8 @@ signals:
 private:
 //    void drawHouse();
 //    void draw2();
-    void drawOpenedWindows();
-    void drawClosedWindows();
+    void drawOpenedWindows(int , int);
+    void drawClosedWindows(int , int);
     void drawOpenedDoor();
     void drawClosedDoor();
     int xRot;
