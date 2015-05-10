@@ -26,6 +26,8 @@ void Window::keyPressEvent(QKeyEvent *e)
 {
     if (e->key() == Qt::Key_Escape)
         close();
+    else if(e->key())
+        ui->myGLWidget->keyPressEvent(e);
     else
         QWidget::keyPressEvent(e);
 }

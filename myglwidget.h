@@ -11,6 +11,9 @@ class MyGLWidget : public QGLWidget
 public:
     explicit MyGLWidget(QWidget *parent = 0);
     ~MyGLWidget();
+    void keyPressEvent(QKeyEvent *event);
+    void drawHouse();
+    void drawBicycle();
 protected:
     void initializeGL();
     void paintGL();

@@ -2,9 +2,9 @@
 
 #include <QtWidgets>
 #include <QtOpenGL>
-
+#include <bits/stdc++.h>
 #include "myglwidget.h"
-
+using namespace std;
 MyGLWidget::MyGLWidget(QWidget *parent)
     : QGLWidget(QGLFormat(QGL::SampleBuffers), parent)
 {
@@ -81,49 +81,15 @@ void MyGLWidget::paintGL()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
     glTranslatef(0.0, 0.0, -10.0);
-    glRotatef(xRot / 16.0, 1.0, 0.0, 0.0);
-    glRotatef(yRot / 16.0, 0.0, 1.0, 0.0);
-    glRotatef(zRot / 16.0, 0.0, 0.0, 1.0);
-    draw();
+    drawHouse();
+//    cout<<xRot<<endl;
+    cout<<xRot<<" "<<yRot<<endl;
+    glRotatef(xRot/16.0,1,0,0);
+    glRotatef(yRot/30.0,0,0,1);
+    glRotatef(zRot/16.0,1,0,0);
+    drawBicycle();
 //    draw2();
 }
-
-void MyGLWidget::resizeGL(int width, int height)
-{
-    int side = qMin(width, height);
-    glViewport((width - side) / 2, (height - side) / 2, side, side);
-
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-#ifdef QT_OPENGL_ES_1
-    glOrthof(-2, +2, -2, +2, 1.0, 15.0);
-#else
-    glOrtho(-2, +2, -2, +2, 1.0, 15.0);
-#endif
-    glMatrixMode(GL_MODELVIEW);
-}
-
-void MyGLWidget::mousePressEvent(QMouseEvent *event)
-{
-    lastPos = event->pos();
-}
-
-void MyGLWidget::mouseMoveEvent(QMouseEvent *event)
-{
-    int dx = event->x() - lastPos.x();
-    int dy = event->y() - lastPos.y();
-
-    if (event->buttons() & Qt::LeftButton) {
-        setXRotation(xRot + 8 * dy);
-        setYRotation(yRot + 8 * dx);
-    } else if (event->buttons() & Qt::RightButton) {
-        setXRotation(xRot + 8 * dy);
-        setZRotation(zRot + 8 * dx);
-    }
-
-    lastPos = event->pos();
-}
-
 
 void drawCircle(double x1,double y1,double z1){
     float x2,y2,z2;
@@ -143,9 +109,8 @@ void drawCircle(double x1,double y1,double z1){
     glEnd();
 }
 
-void MyGLWidget::draw()
-{
 
+void MyGLWidget::drawHouse(){
     /////////7eta gwa
  glBegin(GL_POLYGON);
     glColor3f(0.0f,0.0f,1.0f);
@@ -255,123 +220,64 @@ void MyGLWidget::draw()
               glColor3f(0.0f,0.0f,1.0f);
               glVertex3d(-.2,-.2,0);//glVertex3d(0,-.2,1);
            glEnd();
-//    drawCircle(1,1,1);
-    drawCircle(0,-1.5,2);
-    drawCircle(0,-1.5,2.2);
 }
-void MyGLWidget::draw2()
+
+void MyGLWidget::drawBicycle(){
+    drawCircle(0,-1.5,0);
+    drawCircle(0.75,-1.5,0);
+}
+
+void MyGLWidget::resizeGL(int width, int height)
 {
+    int side = qMin(width, height);
+    glViewport((width - side) / 2, (height - side) / 2, side, side);
 
-    /////////7eta gwa
- glBegin(GL_POLYGON);
-    glColor3f(0.0f,0.0f,1.0f);
-    glVertex3f(-1,-1,0);
-    glColor3f(0.0f,0.0f,1.0f);
-    glVertex3f(1,-1,0);
-    glColor3f(0.0f,0.0f,1.0f);
-    glVertex3f(1,0,0);
-    glColor3f(0.0f,0.0f,1.0f);
-    glVertex3f(-1,0,0);
-  glEnd();
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+#ifdef QT_OPENGL_ES_1
+    glOrthof(-2, +2, -2, +2, 1.0, 15.0);
+#else
+    glOrtho(-2, +2, -2, +2, 1.0, 15.0);
+#endif
+    glMatrixMode(GL_MODELVIEW);
+}
 
-    //////////// foo2
-    glBegin(GL_POLYGON);
-        glColor3f(1.0f,1.0f,1.0f);
-        glVertex3f(-0.5,-0.1,1);
-        glColor3f(1.0f,1.0f,1.0f);
-        glVertex3f(1.5,-0.1,1);
-        glColor3f(1.0f,1.0f,1.0f);
-        glVertex3f(1,0,0);
-        glColor3f(1.0f,1.0f,1.0f);
-        glVertex3f(-1,0,0);
-    glEnd();
+void MyGLWidget::mousePressEvent(QMouseEvent *event)
+{
+    lastPos = event->pos();
+}
 
-    //////////////////////t7t
-    glBegin(GL_POLYGON);
-    glColor3f(1.0f,1.0f,1.0f);
-         glVertex3f(-0.5,-1.1,1);
-         glColor3f(1.0f,1.0f,1.0f);
-         glVertex3f(1.5,-1.1,1);
-         glColor3f(1.0f,1.0f,1.0f);
-         glVertex3f(1,-1,0);
-         glColor3f(1.0f,1.0f,1.0f);
-         glVertex3f(-1,-1,0);
-     glEnd();
+void MyGLWidget::mouseMoveEvent(QMouseEvent *event)
+{
+    int dx = event->x() - lastPos.x();
+    int dy = event->y() - lastPos.y();
 
+    if (event->buttons() & Qt::LeftButton) {
+        setXRotation(xRot + 8 * dy);
+        setYRotation(yRot + 8 * dx);
+    } else if (event->buttons() & Qt::RightButton) {
+        setXRotation(xRot + 8 * dy);
+        setZRotation(zRot + 8 * dx);
+    }
 
-     // el gnb el ymeen
-     glBegin(GL_POLYGON);
-         glColor3f(1.0f,1.0f,1.0f);
-          glVertex3f(-1,-1,0);
-         glColor3f(1.0f,1.0f,1.0f);
-         glVertex3f(-0.5,-1.1,1);
-         glColor3f(1.0f,1.0f,1.0f);
-         glVertex3f(-0.5,-0.1,1);
-         glColor3f(1.0f,1.0f,1.0f);
-         glVertex3f(-1,0,0);
-     glEnd();
-        //el gnb el shmal
-     glBegin(GL_POLYGON);
-          glColor3f(1.0f,1.0f,1.0f);
-          glVertex3f(1,-1,0);
-          glColor3f(1.0f,1.0f,1.0f);
-          glVertex3f(1.5,-1.1,1);
-          glColor3f(1.0f,1.0f,1.0f);
-          glVertex3f(1.5,-0.1,1);
-          glColor3f(1.0f,1.0f,1.0f);
-          glVertex3f(1,0,0);
-      glEnd();
-
-//    7eeta fe el wesh
-     glBegin(GL_POLYGON);
-         glColor3f(1.0f,1.0f,1.0f);
-         glVertex3f(-0.5,-1.1,1);
-         glColor3f(1.0f,1.0f,1.0f);
-         glVertex3f(1.5,-1.1,1);
-         glColor3f(1.0f,1.0f,1.0f);
-         glVertex3f(1.5,-0.1,1);
-         glColor3f(1.0f,1.0f,1.0f);
-         glVertex3f(-0.5,-0.1,1);
-      glEnd();
-
-    // bab
-      glBegin(GL_POLYGON);
-          glColor3f(0.0f,0.0f,1.0f);
-          glVertex3d(1,-.95,0);
-         // glVertex3d(1.3,-.95,1);
-          glColor3f(0.0f,0.0f,1.0f);
-          glVertex3d(1.3,-.95,0);
-          glColor3f(0.0f,0.0f,1.0f);
-          glVertex3d(1.3,-.45,0);
-          glColor3f(0.0f,0.0f,1.0f);
-          glVertex3d(1,-.45,0);
-          //glVertex3d(1.3,-.45,1);
-       glEnd();
-
-       // shbak ymeen
-         glBegin(GL_POLYGON);
-             glColor3f(0.0f,0.0f,1.0f);
-             glVertex3d(.2,-.4,1);
-             glColor3f(0.0f,0.0f,1.0f);
-             glVertex3d(.2,-.4,0);
-             glColor3f(0.0f,0.0f,1.0f);
-             glVertex3d(.2,-.2,0);
-             glColor3f(0.0f,0.0f,1.0f);
-            glVertex3d(.2,-.2,1);
-          glEnd();
-
-            //shabk shmal
-          glBegin(GL_POLYGON);
-              glColor3f(0.0f,0.0f,1.0f);
-              glVertex3d(-.2,-.4,0);
-              glColor3f(0.0f,0.0f,1.0f);
-              glVertex3d(-.2,-.4,1);
-              glColor3f(0.0f,0.0f,1.0f);
-              glVertex3d(0,-.2,0);
-              glColor3f(0.0f,0.0f,1.0f);
-              glVertex3d(0,-.2,1);
-           glEnd();
+    lastPos = event->pos();
+}
 
 
 
+void MyGLWidget::keyPressEvent(QKeyEvent *event){
+    if(event->key()==(int)'W'){//UP
+        xRot+=10;
+    }
+    else if(event->key()==(int)'S'){
+        xRot-=10;
+
+    }
+    else if(event->key()==(int)'D'){
+        yRot+=10;
+    }
+    else if(event->key()==(int)'A'){
+        yRot-=10;
+    }
+    updateGL();
 }
