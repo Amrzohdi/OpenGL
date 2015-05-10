@@ -128,12 +128,25 @@ void MyGLWidget::paintGL()
     glClearColor(0, 1, 0, 0);
     glLoadIdentity();
     glTranslatef(0.0, 0.0, -10.0);
-//    glRotatef(xRot/16.0,1,0,0);
-//    glRotatef(yRot/30.0,0,1,0);
-//    glRotatef(zRot/16.0,0,0,1);
+    if(!rotatedbyc){
+         glRotatef(xRot/16.0,1,0,0);
+         glRotatef(yRot/16.0,0,1,0);
+         glRotatef(zRot/16.0,0,0,1);
+    }
+    if(rotatedbyc){
+        glPushMatrix();
+        glRotatef(xRot/16.0,1,0,0);
+        glRotatef(yRot/30.0,0,1,0);
+        glRotatef(zRot/16,0,.7,1);
+    }
+    drawBicycle();
+    drawline();
+    glPopMatrix();
+
     drawHouse(0);
     drawHouse(1);
     drawtraingle();
+
     if(isOpenedDoor()){
         drawOpenedDoor();
     }else
@@ -151,11 +164,7 @@ void MyGLWidget::paintGL()
         drawClosedWindows( 1 , 1);
 
     }
-    glRotatef(xRot/16.0,1,0,0);
-    glRotatef(yRot/30.0,0,1,0);
-    glRotatef(zRot/16,0,.7,1);
-    drawBicycle();
-    drawline();
+
 
 }
 
@@ -380,11 +389,13 @@ void MyGLWidget::resizeGL(int width, int height)
 
 void MyGLWidget::mousePressEvent(QMouseEvent *event)
 {
+    rotatedbyc=0;
     lastPos = event->pos();
 }
 
 void MyGLWidget::mouseMoveEvent(QMouseEvent *event)
 {
+    rotatedbyc=0;
     int dx = event->x() - lastPos.x();
     int dy = event->y() - lastPos.y();
 
@@ -429,9 +440,11 @@ void MyGLWidget::keyPressEvent(QKeyEvent *event){
     }
     else if(event->key()==(int)'Z'){
         zRot+=10;
+        rotatedbyc=1;
     }
     else if(event->key()==(int)'X'){
         zRot-=10;
+        rotatedbyc=1;
     }
 
     updateGL();

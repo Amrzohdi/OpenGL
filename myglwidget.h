@@ -50,6 +50,7 @@ private:
     bool openWindows;
     bool openDoor;
     QPoint lastPos;
+    bool rotatedbyc;
 };
 
 #endif // MYGLWIDGET_H
