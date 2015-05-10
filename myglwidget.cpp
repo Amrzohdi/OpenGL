@@ -78,14 +78,14 @@ void MyGLWidget::initializeGL()
 
 
 void drawline(){
-    glColor3f(1.0,1.0,0.6);
+    glColor3f(0,0,0);
     glBegin(GL_LINE_STRIP);
     glVertex3d(0,-1.5,0);
     glVertex3d(0.75,-1.5,0);
     glEnd();
 
 
-    glColor3f(1.0,1.0,0.6);
+    glColor3f(0,0,0);
     glBegin(GL_LINE_STRIP);
     glVertex3d(0,-1.5,0);
     glVertex3d(0,-1.2,0);
@@ -125,6 +125,7 @@ void drawtraingle(){
 void MyGLWidget::paintGL()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glClearColor(0, 1, 0, 0);
     glLoadIdentity();
     glTranslatef(0.0, 0.0, -10.0);
 //    glRotatef(xRot/16.0,1,0,0);
@@ -164,7 +165,7 @@ void drawCircle(double x1,double y1,double z1){
     float angle;
     double radius=0.1;
 
-    glColor3f(1.0,1.0,0.6);
+    glColor3f(0,0,0);
 
     glBegin(GL_POINTS);
     for (angle=1.0f;angle<361.0f;angle+=.2)

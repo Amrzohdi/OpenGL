@@ -22,6 +22,9 @@
        <height>200</height>
       </size>
      </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
     </widget>
    </item>
    <item>
@@ -139,6 +142,7 @@
     <slot>setXRotation(int)</slot>
     <slot>setZRotation(int)</slot>
     <slot>setYRotation(int)</slot>
+    <slot>keyPressEvent(QkeyEvent*)</slot>
    </slots>
   </customwidget>
  </customwidgets>
