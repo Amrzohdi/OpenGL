@@ -91,6 +91,37 @@ void drawline(){
     glVertex3d(0,-1.2,0);
     glEnd();
 }
+void drawtraingle(){
+    glColor3f(1,0,0);
+    glBegin(GL_TRIANGLES);
+          glNormal3f(0,-1,0.707);
+          glVertex3f(1.5,.9,1);
+          glVertex3f(-.5,.9,1);
+          glVertex3f(.4,1.5,0.6);
+      glEnd();
+
+      glBegin(GL_TRIANGLES);
+          glNormal3f(1,0, 0.707);
+          glVertex3f(-1,1,0);
+          glVertex3f(1,1,0);
+          glVertex3f(.4,1.5,0.6);
+      glEnd();
+
+      glBegin(GL_TRIANGLES);
+          glNormal3f(0,1,0.707);
+          glVertex3f(-1,1,0);
+          glVertex3f(-.5,.9,1);
+          glVertex3f(.4,1.5,0.6);
+      glEnd();
+
+      glBegin(GL_TRIANGLES);
+          glNormal3f(-1,0,0.707);
+          glVertex3f(1,1,0);
+          glVertex3f(1.5,.9,1);
+            glVertex3f(.4,1.5,0.6);
+      glEnd();
+}
+
 void MyGLWidget::paintGL()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -99,10 +130,9 @@ void MyGLWidget::paintGL()
 //    glRotatef(xRot/16.0,1,0,0);
 //    glRotatef(yRot/30.0,0,1,0);
 //    glRotatef(zRot/16.0,0,0,1);
-//    glRotatef(180.0 , 0 , 1 , 0);
     drawHouse(0);
     drawHouse(1);
-    cout << isOpenedDoor() << endl;
+    drawtraingle();
     if(isOpenedDoor()){
         drawOpenedDoor();
     }else
@@ -124,8 +154,8 @@ void MyGLWidget::paintGL()
     glRotatef(yRot/30.0,0,1,0);
     glRotatef(zRot/16,0,.7,1);
     drawBicycle();
-
     drawline();
+
 }
 
 
