@@ -76,19 +76,41 @@ void MyGLWidget::initializeGL()
 //    glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
 }
 
+void drawCircle(double x1,double y1,double z1){
+    float x2,y2,z2;
+    float angle;
+    double radius=0.1;
 
+    glColor3f(0,0,0);
+
+    glBegin(GL_POINTS);
+    for (angle=1.0f;angle<361.0f;angle+=.2)
+    {
+        x2 = x1+sin(angle)*radius;
+        y2 = y1+cos(angle)*radius;
+        z2 = z1+cos(angle)*radius;
+        glVertex3f(x2,y2,z2);
+        for(double j=0;j<=0.1;j+=0.01)
+            glVertex3f(x2,y2,z2+j);
+    }
+    glEnd();
+}
 void drawline(){
     glColor3f(0,0,0);
     glBegin(GL_LINE_STRIP);
-    glVertex3d(0,-1.5,0);
-    glVertex3d(0.75,-1.5,0);
+    for(double j=0;j<=.1;j+=.01){
+         glVertex3d(0,-1.5,0+j);
+         glVertex3d(0.75,-1.5,0+j);
+    }
     glEnd();
 
 
     glColor3f(0,0,0);
     glBegin(GL_LINE_STRIP);
-    glVertex3d(0,-1.5,0);
-    glVertex3d(0,-1.2,0);
+    for(double j=0;j<=.1;j+=.01){
+         glVertex3d(0,-1.5,0+j);
+         glVertex3d(0,-1.2,0+j);
+    }
     glEnd();
 }
 void drawtraingle(){
@@ -128,24 +150,44 @@ void MyGLWidget::paintGL()
     glClearColor(0, 1, 0, 0);
     glLoadIdentity();
     glTranslatef(0.0, 0.0, -10.0);
-    if(!rotatedbyc && !frb){
+    if(!rotatedbyc && !frb && !gla3 && !wara){
          glRotatef(xRot/16.0,1,0,0);
          glRotatef(yRot/16.0,0,1,0);
          glRotatef(zRot/16.0,0,0,1);
     }
-    if(frb){
+    else if(frb && !rotatedbyc && !gla3 && !wara){
         glPushMatrix();
         glTranslatef(xRot/32.0, 0.0,0.0);
         frb=0;
     }
 
-    if(rotatedbyc){
+    else if(rotatedbyc && !frb && !gla3 && !wara) {
         glPushMatrix();
         glRotatef(zRot/16,0,.7,1);
         rotatedbyc=0;
     }
-
+    else if(gla3 && !wara){
+        gla3=0;
+        glPushMatrix();
+        glRotatef(xRot/16,0,1,0);
+        drawCircle(0,-1.5,0);
+        glPopMatrix();
+        drawCircle(0.75,-1.5,0);
+        goto ss;
+    }
+    else if(wara){
+        wara=0;
+        glPushMatrix();
+        glTranslatef(0.75,-1.5,0);
+        glRotatef(xRot/16,0,1,0);
+        glTranslatef(-0.75,+1.5,0);
+        drawCircle(0.75,-1.5,0);
+        glPopMatrix();
+        drawCircle(0,-1.5,0);
+        goto ss;
+    }
     drawBicycle();
+    ss:
     drawline();
     glPopMatrix();
 
@@ -168,30 +210,13 @@ void MyGLWidget::paintGL()
         drawClosedWindows( 0 , 1);
         drawClosedWindows( 1 , 0);
         drawClosedWindows( 1 , 1);
-
     }
 
 
 }
 
 
-void drawCircle(double x1,double y1,double z1){
-    float x2,y2,z2;
-    float angle;
-    double radius=0.1;
 
-    glColor3f(0,0,0);
-
-    glBegin(GL_POINTS);
-    for (angle=1.0f;angle<361.0f;angle+=.2)
-    {
-        x2 = x1+sin(angle)*radius;
-        y2 = y1+cos(angle)*radius;
-        z2 = z1+cos(angle)*radius;
-        glVertex3f(x2,y2,z2);
-    }
-    glEnd();
-}
 void MyGLWidget::drawOpenedWindows(int tempX , int tempY){
     glBegin(GL_POLYGON);
         glColor3f(0.0f,0.0f,1.0f);
@@ -298,6 +323,9 @@ void MyGLWidget::drawClosedDoor(){
 }
 void MyGLWidget::drawHouse(int temp){
     /////////7eta gwa
+    /// glColor3f(0.0f,0.0f,1.0f);
+    ///
+
  glBegin(GL_POLYGON);
     glColor3f(0.0f,0.0f,1.0f);
     glVertex3f(-1,-1 + temp,0);
@@ -338,34 +366,35 @@ void MyGLWidget::drawHouse(int temp){
      glBegin(GL_POLYGON);
          glColor3f(1.0f,1.0f,1.0f);
           glVertex3f(-1,-1 + temp,0);
-         glColor3f(1.0f,1.0f,1.0f);
+         glColor3f(0.534f,.224f,.720f);
          glVertex3f(-0.5,-1.1 + temp,1);
          glColor3f(1.0f,1.0f,1.0f);
          glVertex3f(-0.5,-0.1 + temp,1);
-         glColor3f(1.0f,1.0f,1.0f);
+         glColor3f(0.534f,.224f,.720f);
          glVertex3f(-1,0 + temp,0);
      glEnd();
         //el gnb el shmal
      glBegin(GL_POLYGON);
           glColor3f(1.0f,1.0f,1.0f);
           glVertex3f(1,-1 + temp,0);
-          glColor3f(1.0f,1.0f,1.0f);
+          glColor3f(0.534f,.224f,.720f);
           glVertex3f(1.5,-1.1 + temp,1);
           glColor3f(1.0f,1.0f,1.0f);
           glVertex3f(1.5,-0.1 + temp,1);
-          glColor3f(1.0f,1.0f,1.0f);
+          glColor3f(0.534f,.224f,.720f);
           glVertex3f(1,0 + temp,0);
       glEnd();
 
+
 //    7eeta fe el wesh
      glBegin(GL_POLYGON);
-         glColor3f(1.0f,1.0f,1.0f);
+          glColor3f(1.0f,1.0f,1.0f);
          glVertex3f(-0.5,-1.1 + temp,1);
-         glColor3f(1.0f,1.0f,1.0f);
+         glColor3f(0.534f,.224f,.720f);
          glVertex3f(1.5,-1.1 + temp,1);
-         glColor3f(1.0f,1.0f,1.0f);
+          glColor3f(1.0f,1.0f,1.0f);
          glVertex3f(1.5,-0.1 + temp,1);
-         glColor3f(1.0f,1.0f,1.0f);
+          glColor3f(0.534f,.224f,.720f);
          glVertex3f(-0.5,-0.1 + temp,1);
       glEnd();
 
@@ -456,6 +485,18 @@ void MyGLWidget::keyPressEvent(QKeyEvent *event){
         zRot-=10;
         rotatedbyc=1;
     }
-
+    else if(event->key() == (int)'1'){
+         xRot+=10;
+         gla3=1;
+         rotatedbyc=0;
+          frb=0;
+     }
+     else if(event->key()== (int)'2'){
+         xRot+=10;
+         wara=1;
+         gla3=0;
+         rotatedbyc=0;
+         frb=0;
+     }
     updateGL();
 }

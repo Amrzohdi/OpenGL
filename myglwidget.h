@@ -52,6 +52,8 @@ private:
     QPoint lastPos;
     bool rotatedbyc;
     bool frb;
+    bool gla3;
+    bool wara;
 };
 
 #endif // MYGLWIDGET_H
